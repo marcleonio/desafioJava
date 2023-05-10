@@ -14,19 +14,25 @@ spring:
       suffix: '.jsp'
   main:
     allow-bean-definition-overriding: true
+  sql:
+    init:
+      mode: always
   datasource:
-    url: jdbc:postgresql://${DB_URL:localhost}:${DB_PORT:5432}/${DB_NAME:my-database}
-    username: ${DB_USERNAME:username}
-    password: ${DB_PASSWORD:password}
-    initialization-mode: always
+    url: jdbc:postgresql://${DB_URL:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
     connectionTestQuery: 'SELECT 1'
+  flyway:
+    enabled: true
+    user: postgres
+    password: postgres
 
   jpa:
     properties:
       hibernate:
         dialect: 'org.hibernate.dialect.PostgreSQLDialect'
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     generate-ddl: true
 
 
